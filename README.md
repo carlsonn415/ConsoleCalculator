@@ -4,6 +4,6 @@ Enter an equation you want to be solved with an '=' at the end. Be sure to inclu
 
 Example input and output:
 
-2.5 * ( 13 - ( 6 / 2 ) ) =
+Enter equation: 2.5 * ( 13 - ( 6 / 2 ) ) =
 
-25
+Result: 25
