@@ -1,48 +1,48 @@
 // CalculatorTutorial.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
 
 #include <iostream>
 #include <vector>
 
 using namespace std;
 
-double Solve(vector<double> variables, vector<char> operators);
+double Solve(vector<double> variables, vector<char> operators); //prototype
 
-int main()
+int main() //main function handles user input and screen output
 {
-	while (true)
+	while (true) //loops until user exits program
 	{
 		// 2 vector arrays hold equation variables and operators
 		vector<double> variables;
 		vector<char> operators;
 
-		//double temp_var;
-		//char temp_oper;
-		string temp = "";
+		string temp = ""; //holds user input
 		double result = 0.0;
 
-		//populates arrays
+		//populates vectors
 		cout << "Enter equation: ";
 		while (true)
 		{
 			cin >> temp;
 			if (temp == "+" || temp == "-" || temp == "*" || temp == "/" || temp == "(" || temp == ")")
 			{
+				//adds operator to operators vector
 				operators.push_back(temp[0]);
 			}
-			else if (temp == "=")
+			else if (temp == "=") 
 			{
+				//breaks loop if end of equation
 				break;
 			}
 			else
 			{
+				//converts input to double and adds to variables vector
 				variables.push_back(strtod(temp.c_str(), NULL));
 			}
 		}
 
 		result = Solve(variables, operators);
 
-		if (result == 0.12345)
+		if (result == 0.12345) //Solve function returns 0.12345 if equation is undefined
 		{
 			cout << "Result: Undefined" << endl;
 		}
@@ -90,7 +90,7 @@ double Solve(vector<double> variables, vector<char> operators)
 					}
 					else if (operators[j + 1] == ')' && nested_parenthesis == 0) //checks for end of sub-equation
 					{
-						if (sub_variables.size() <= (sub_operators.size() - num_parentheses_operators) && sub_operators.size() > 0) // checks if the number of sub variables is less than the number of sub operators
+						if (sub_variables.size() <= sub_operators.size() - num_parentheses_operators && sub_operators.size() > 0) // checks if the number of sub variables is less than the number of sub operators
 						{
 							sub_variables.push_back(variables[j]);
 							variables.erase(variables.begin() + j);
@@ -125,7 +125,7 @@ double Solve(vector<double> variables, vector<char> operators)
 					}
 				}
 			}
-			else if (i == 1 && (operators[j] == '*' || operators[j] == '/')) //checks if current operator is * or / during 2nd pass
+			else if (i == 1 && (operators[j] == '*' || operators[j] == '/')) //checks if operators[j] is * or / during 2nd pass
 			{
 				if (operators[j] == '*')
 				{
